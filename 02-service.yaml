@@ -3,16 +3,17 @@ kind: Service
 
 metadata:
   name: nginx
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
 
 spec:
   type: LoadBalancer
 
-  # Service uses these labels to select Pods
   selector:
     app: nginx
     version: blue
 
   ports:
     - protocol: TCP
-      port: 80        # Service port
-      targetPort: 80  # Container port
+      port: 80
+      targetPort: 80
